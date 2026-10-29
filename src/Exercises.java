@@ -116,11 +116,21 @@ public class Exercises {
      */
     public static ListNode removeMin(ListNode head) {
         int target = min(head);
+        if(head == null)|| length((head) == 1) {
+            return null;
+        }
+        if(head.data == target){
+            ListNode newHead = head.next;
+            return newHead;
+        }
+
+
         ListNode current = head;
         ListNode lastNode = null;
         while(current != null){
-    if (current.data == target) {
-        lastNode.next = lastNode.next.next;
+            if (current.data == target) {
+                 lastNode.next = lastNode.next.next;
+
 
             }
             lastNode = current;
