@@ -41,7 +41,7 @@ public class Exercises {
         ListNode newNode = new ListNode(toAdd);
         newNode.next = head;
         head = newNode;
-        return null;
+        return head;
     }
 
     /**
