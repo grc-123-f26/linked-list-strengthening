@@ -12,7 +12,13 @@ public class Exercises {
      * @return the length of the list
      */
     public static int length(ListNode head) {
-        return -1;
+        int countNodes =0;
+        ListNode current = head;
+        while (current != null) {
+            countNodes++;
+            current = current.next;
+        }
+        return countNodes;
     }
 
     /**
@@ -29,7 +35,13 @@ public class Exercises {
      * @return the new head of the linked list
      */
     public static ListNode prepend(ListNode head, int toAdd) {
-        return null;
+        if (head == null) {
+            return new ListNode(toAdd);
+        }
+        ListNode newNode = new ListNode(toAdd);
+        newNode.next = head;
+        head = newNode;
+        return head;
     }
 
     /**
@@ -45,7 +57,15 @@ public class Exercises {
      * @return the head of the list with the last element removed
      */
     public static ListNode removeLast(ListNode head) {
-        return null;
+        if (head == null || head.next == null) {
+            return null;
+        }
+        ListNode temp = head;
+        while (temp.next.next != null) {
+            temp = temp.next;
+        }
+        temp.next = null;
+        return head;
     }
 
     /**
@@ -60,7 +80,18 @@ public class Exercises {
      * @return the minimum value in the list 
      */
     public static int min(ListNode head) {
-        return -1;
+        if (head == null) {
+            return Integer.MAX_VALUE;
+        }
+        int smallest = head.data;
+        ListNode temp = head;
+        while (temp != null) {
+            if (smallest > temp.data) {
+                smallest = temp.data;
+            }
+            temp = temp.next;
+        }
+        return smallest;
     }
 
     /**
@@ -81,7 +112,27 @@ public class Exercises {
      * @return the head of the list with the first instance of the minimum value removed
      */
     public static ListNode removeMin(ListNode head) {
-        return null;
+        if (head == null || head.next == null) {
+            return null;
+        }
+        int smallest = min(head);
+        //check if head is the first instance of smallest node
+        //if true, remove head
+        ListNode temp = head;
+        if (temp.data == smallest) {
+            return head.next;
+        }
+
+        boolean isFirstMin = false;
+        while (!isFirstMin) {
+            if (temp.next.data != smallest) {
+                temp = temp.next;
+            } else {
+                isFirstMin = true;
+                temp.next = temp.next.next;
+            }
+        }
+        return head;
     }
 
     /* ------ OPTIONAL CHALLENGE PROBLEMS ------ */
