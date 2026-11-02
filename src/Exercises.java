@@ -12,7 +12,13 @@ public class Exercises {
      * @return the length of the list
      */
     public static int length(ListNode head) {
-        return -1;
+        int count = 0;
+        ListNode curr = head;
+        while(curr != null){
+            curr = curr.next;
+            count ++;
+        }
+        return count;
     }
 
     /**
@@ -29,7 +35,10 @@ public class Exercises {
      * @return the new head of the linked list
      */
     public static ListNode prepend(ListNode head, int toAdd) {
-        return null;
+        // return new ListNode(toAdd, head);
+        ListNode curr = new ListNode(toAdd);
+        curr.next = head;
+        return curr;
     }
 
     /**
@@ -45,7 +54,17 @@ public class Exercises {
      * @return the head of the list with the last element removed
      */
     public static ListNode removeLast(ListNode head) {
-        return null;
+        if(head == null || head.next == null){
+            return null;
+        }
+
+        ListNode curr = head;
+        while( curr.next.next != null){
+            curr = curr.next;
+        }
+        curr.next = null;
+
+        return head;
     }
 
     /**
@@ -60,7 +79,16 @@ public class Exercises {
      * @return the minimum value in the list 
      */
     public static int min(ListNode head) {
-        return -1;
+        int min = Integer.MAX_VALUE;
+        ListNode curr = head;
+
+        while(curr != null){
+            if(curr.data < min){
+               min = curr.data; 
+            }
+            curr = curr.next;
+        }
+        return min;
     }
 
     /**
@@ -81,7 +109,22 @@ public class Exercises {
      * @return the head of the list with the first instance of the minimum value removed
      */
     public static ListNode removeMin(ListNode head) {
-        return null;
+        if(head == null || head.next == null){
+            return null;
+        }
+
+        int minValue = min(head);
+        if(head.data == minValue){
+            return head.next;
+        }
+
+        ListNode curr = head;
+        while(curr.next.data != minValue) {
+            curr = curr.next;
+        }
+        curr.next = curr.next.next;
+        
+        return head;
     }
 
     /* ------ OPTIONAL CHALLENGE PROBLEMS ------ */
