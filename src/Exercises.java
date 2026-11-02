@@ -11,8 +11,16 @@ public class Exercises {
      * @param head the head of the linked list
      * @return the length of the list
      */
-    public static int length(ListNode head) {
-        return -1;
+    public static int length(ListNode head) 
+    {
+        int count = 0;
+        ListNode current = head;
+        while(current != null)
+        {
+            count++;
+            current = current.next;
+        }
+        return count;
     }
 
     /**
@@ -28,8 +36,11 @@ public class Exercises {
      * @param toAdd the value to add to the front
      * @return the new head of the linked list
      */
-    public static ListNode prepend(ListNode head, int toAdd) {
-        return null;
+    public static ListNode prepend(ListNode head, int toAdd) 
+    {
+        ListNode NewNode = new ListNode(toAdd);
+        NewNode.next = head;
+        return NewNode;
     }
 
     /**
@@ -45,7 +56,21 @@ public class Exercises {
      * @return the head of the list with the last element removed
      */
     public static ListNode removeLast(ListNode head) {
-        return null;
+        ListNode current = head;
+        ListNode NewNode = new ListNode(head.data);
+        if(current == null || current.next == null)
+        {
+            return null;
+        }
+        while(current != null)
+        {
+            if(current.next.next != null)
+            {
+            current = current.next;            
+        }
+        }
+        current.next = null;
+        return head;
     }
 
     /**
@@ -60,7 +85,20 @@ public class Exercises {
      * @return the minimum value in the list 
      */
     public static int min(ListNode head) {
-        return -1;
+        ListNode current = head;
+        
+        if (current == null) {
+            return Integer.MAX_VALUE; 
+        } 
+
+        int minVal = head.data;
+        while (current != null) {
+            if (current.data < minVal) {
+                minVal = current.data;
+            }
+            current = current.next;
+        }
+        return minVal;
     }
 
     /**
